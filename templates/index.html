@@ -1,35 +1,41 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>当前时间 JSON</title>
-  <script>
-    async function fetchTime() {
-      try {
-        const response = await fetch('/api/time');
-        const data = await response.json();
-        // 只获取 time 字段
-        const dateStr = data.time;
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>当前时间 JSON</title>
+    <script>
+        async function fetchTime() {
+            try {
+                const response = await fetch('/api/time');
+                const data = await response.json();
+                // 只获取 time 字段
+                const dateStr = data.time;
 
-        // 显示时间
-        document.getElementById('json-display').innerText = dateStr;
+                // 显示时间
+                document.getElementById('json-display').innerText = dateStr;
 
-        // 自动复制到剪贴板
-        await navigator.clipboard.writeText(dateStr);
-        document.getElementById('copy-status').innerText = "时间已复制到剪贴板!";
-      } catch (error) {
-        console.error('获取数据失败', error);
-      }
-    }
+                // 自动复制到剪贴板
+                await navigator.clipboard.writeText(dateStr);
+                document.getElementById('copy-status').innerText = "时间已复制到剪贴板!";
+            } catch (error) {
+                console.error('获取数据失败', error);
+            }
+        }
 
-    // 页面加载时自动执行
-    window.onload = fetchTime;
-  </script>
+        // 页面加载时自动执行
+        window.onload = fetchTime;
+    </script>
 </head>
 <body>
-  <h2>当前时间</h2>
-  <pre id="json-display"></pre>
-  <p id="copy-status" style="color: green;"></p>
+<h2>当前时间</h2>
+<pre id="json-display"></pre>
+<p id="copy-status" style="color: green;"></p>
+<ul>
+    <li><a href="/vuepress-front-matter">Vuepress 博客</a></li>
+    <li><a href="/hexo">hexo 博客</a></li>
+    <li><a href="/docs">AI悦创自用：hexo 博客</a></li>
+    <li><a href="/blog">AI悦创自用：hexo 博客</a></li>
+</ul>
 </body>
 </html>

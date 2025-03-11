@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>纯文本自动复制</title>
+  <script>
+    window.onload = () => {
+      // 从后端传入的 current_time 变量，会在 HTML 里渲染
+      const currentTime = "{{ current_time }}";
+      // 这里的纯文本示例可以是任意字符串:
+      const textToCopy = `title:
+icon: blog
+date: ${currentTime}
+author:
+isOriginal: true
+sticky: false
+star: false
+article: true
+timeline: true
+image: false
+navbar: true
+sidebarIcon: true
+headerDepth: 5
+comment: true
+lastUpdated: true
+editLink: false
+backToTop: true
+toc: true
+
+
+::: details 公众号：AI悦创【二维码】
+
+![](/gzh.jpg)
+
+:::
+
+::: info AI悦创·编程一对一
+
+AI悦创·推出辅导班啦，包括「Python 语言辅导班、C++ 辅导班、java 辅导班、算法/数据结构辅导班、少儿编程、pygame 游戏开发、Web、Linux」，招收学员面向国内外，国外占 80%。全部都是一对一教学：一对一辅导 + 一对一答疑 + 布置作业 + 项目实践等。当然，还有线下线上摄影课程、Photoshop、Premiere 一对一教学、QQ、微信在线，随时响应！微信：Jiabcdefh
+
+C++ 信息奥赛题解，长期更新！长期招收一对一中小学信息奥赛集训，莆田、厦门地区有机会线下上门，其他地区线上。微信：Jiabcdefh
+
+方法一：[QQ](http://wpa.qq.com/msgrd?v=3&uin=1432803776&site=qq&menu=yes)
+
+方法二：微信：Jiabcdefh
+
+:::
+
+![](/zsxq.jpg)
+`;
+      // 显示在页面
+      document.getElementById('text-container').innerText = textToCopy;
+
+      // 自动复制到剪贴板
+      navigator.clipboard.writeText(textToCopy)
+        .then(() => {
+          document.getElementById('copy-status').innerText = "纯文本已复制到剪贴板!";
+        })
+        .catch(err => {
+          console.error("复制失败", err);
+        });
+    };
+  </script>
+</head>
+<body>
+  <h2>自动生成的纯文本</h2>
+  <pre id="text-container"></pre>
+  <p id="copy-status" style="color: green;"></p>
+</body>
+</html>

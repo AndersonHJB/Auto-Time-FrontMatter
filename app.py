@@ -29,6 +29,8 @@ def get_time():
 # 返回 date_text.html, 显示指定文本, 其中 date 只替换当前日期, 并自动复制
 # ----------------------------------------------------------------------------
 @app.route('/date-text')
+@app.route('/vuepress-front-matter')
+@app.route('/docs')
 def date_text():
     current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     return render_template('date_text.html', current_time=current_time)
@@ -38,7 +40,9 @@ def date_text():
 # 返回 vlog_content.html, 内含多行 YAML 风格文本 + 一段文案
 # 同样自动替换 date: 为当前日期, 并自动复制
 # ----------------------------------------------------------------------------
-@app.route('/vlog')
+@app.route('/hexo-front-matter')
+@app.route('/hexo')
+@app.route('/blog')
 def vlog():
     current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     return render_template('vlog_content.html', current_time=current_time)

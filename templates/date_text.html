@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>纯文本自动复制</title>
+  <script>
+    window.onload = () => {
+      // 从后端传入的 current_time 变量，会在 HTML 里渲染
+      const currentTime = "{{ current_time }}";
+      // 构建“纯文本”格式
+      const textToCopy = `title:
+icon: blog
+date: ${currentTime}
+author:
+isOriginal: true
+sticky: false
+star: false
+article: true
+timeline: true
+image: false
+navbar: true
+sidebarIcon: true
+headerDepth: 5
+comment: true
+lastUpdated: true
+editLink: false
+backToTop: true
+toc: true
+`;
+
+      // 页面中显示
+      document.getElementById('text-container').innerText = textToCopy;
+
+      // 自动复制到剪贴板
+      navigator.clipboard.writeText(textToCopy)
+        .then(() => {
+          document.getElementById('copy-status').innerText = "纯文本已复制到剪贴板!";
+        })
+        .catch(err => {
+          console.error("复制失败", err);
+        });
+    };
+  </script>
+</head>
+<body>
+  <h2>以下为自动生成的纯文本</h2>
+  <pre id="text-container"></pre>
+  <p id="copy-status" style="color: green;"></p>
+</body>
+</html>

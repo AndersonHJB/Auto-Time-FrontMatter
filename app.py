@@ -34,7 +34,7 @@ def date_text():
     current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     return render_template('date_text.html', current_time=current_time)
 @app.route('/docs')
-def date_text():
+def docs():
     current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     return render_template('docs.html', current_time=current_time)
 

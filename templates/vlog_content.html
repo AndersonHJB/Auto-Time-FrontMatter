@@ -10,8 +10,7 @@
 
       // 注意这里使用了多行字符串 + raw 块，让 Jinja2 忽略大部分 {} 标签
       // 并只在 date: 后面插入 currentTime
-      const textToCopy = `
-{% raw %}---
+      const textToCopy = `{% raw %}---
 title:
 tags:
   - 学习方法

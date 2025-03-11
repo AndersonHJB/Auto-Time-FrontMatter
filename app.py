@@ -41,12 +41,15 @@ def date_text():
 # 同样自动替换 date: 为当前日期, 并自动复制
 # ----------------------------------------------------------------------------
 @app.route('/hexo-front-matter')
-@app.route('/hexo')
 @app.route('/blog')
 def vlog():
     current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     return render_template('vlog_content.html', current_time=current_time)
 
+@app.route('/hexo')
+def hexo():
+    current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    return render_template('hexo_content.html', current_time=current_time)
 # ----------------------------------------------------------------------------
 # 启动
 # ----------------------------------------------------------------------------

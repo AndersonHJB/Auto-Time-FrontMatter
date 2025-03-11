@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vlog 内容自动复制</title>
+  <script>
+    window.onload = () => {
+      const currentTime = "{{ current_time }}";
+
+      // 需要复制的多行文本
+      // 用模板字符串保留原格式，只把 date 替换成 currentTime
+      const textToCopy = `---
+title:
+tags:
+  - 学习方法
+  - 编程思维
+categories:
+  - AI悦创·Vlog
+keywords:
+  - AI悦创
+  - Vlog
+description: 本篇是 AI悦创编写的文章
+top_img:
+comments: true
+cover:
+toc: true
+mathjax: false
+katex: false
+highlight_shrink: false
+aside: true
+swiper_index: 1
+top_group_index: 1
+background: '#fff'
+abbrlink: f00429a3
+date: ${currentTime}
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+aplayer:
+ai:
+---
+`;
+
+      // 显示在页面上
+      document.getElementById('vlog-text').innerText = textToCopy;
+
+      // 自动复制到剪贴板
+      navigator.clipboard.writeText(textToCopy)
+        .then(() => {
+          document.getElementById('copy-status').innerText = "Vlog 内容已复制到剪贴板!";
+        })
+        .catch(err => {
+          console.error("复制失败", err);
+        });
+    };
+  </script>
+</head>
+<body>
+  <h2>Vlog 内容</h2>
+  <pre id="vlog-text"></pre>
+  <p id="copy-status" style="color: green;"></p>
+</body>
+</html>

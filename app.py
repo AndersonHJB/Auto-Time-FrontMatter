@@ -25,8 +25,8 @@ def get_time():
     return jsonify(data)
 
 # ----------------------------------------------------------------------------
-# 新增路径 /date-text
-# 访问 http://127.0.0.1:5000/date-text 时，会在页面上显示特定的"纯文本"，并自动复制
+# 功能2: /date-text
+# 返回 date_text.html, 显示指定文本, 其中 date 只替换当前日期, 并自动复制
 # ----------------------------------------------------------------------------
 @app.route('/date-text')
 def date_text():
@@ -34,9 +34,20 @@ def date_text():
     return render_template('date_text.html', current_time=current_time)
 
 # ----------------------------------------------------------------------------
-# 启动服务
+# 功能3: /vlog
+# 返回 vlog_content.html, 内含多行 YAML 风格文本 + 一段文案
+# 同样自动替换 date: 为当前日期, 并自动复制
+# ----------------------------------------------------------------------------
+@app.route('/vlog')
+def vlog():
+    current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    return render_template('vlog_content.html', current_time=current_time)
+
+# ----------------------------------------------------------------------------
+# 启动
 # ----------------------------------------------------------------------------
 if __name__ == '__main__':
-    # 访问 http://127.0.0.1:5000/      -- 原有 JSON 功能，返回日期并复制日期
-    # 访问 http://127.0.0.1:5000/date-text -- 新增的纯文本格式页面，并自动复制
+    # 1) http://127.0.0.1:5000/        -> index.html + 只复制日期
+    # 2) http://127.0.0.1:5000/date-text -> date_text.html + 文本 + 自动复制
+    # 3) http://127.0.0.1:5000/vlog    -> vlog_content.html + 文本 + 自动复制
     app.run(host='0.0.0.0', port=5000, debug=True)

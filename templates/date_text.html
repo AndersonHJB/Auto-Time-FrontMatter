@@ -8,7 +8,7 @@
     window.onload = () => {
       // 从后端传入的 current_time 变量，会在 HTML 里渲染
       const currentTime = "{{ current_time }}";
-      // 构建“纯文本”格式
+      // 这里的纯文本示例可以是任意字符串:
       const textToCopy = `title:
 icon: blog
 date: ${currentTime}
@@ -28,8 +28,7 @@ editLink: false
 backToTop: true
 toc: true
 `;
-
-      // 页面中显示
+      // 显示在页面
       document.getElementById('text-container').innerText = textToCopy;
 
       // 自动复制到剪贴板
@@ -44,7 +43,7 @@ toc: true
   </script>
 </head>
 <body>
-  <h2>以下为自动生成的纯文本</h2>
+  <h2>自动生成的纯文本</h2>
   <pre id="text-container"></pre>
   <p id="copy-status" style="color: green;"></p>
 </body>

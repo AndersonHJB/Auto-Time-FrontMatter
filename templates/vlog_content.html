@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vlog 内容自动复制</title>
+  <script>
+    window.onload = () => {
+      const currentTime = "{{ current_time }}";
+
+      // 注意这里使用了多行字符串 + raw 块，让 Jinja2 忽略大部分 {} 标签
+      // 并只在 date: 后面插入 currentTime
+      const textToCopy = `
+{% raw %}---
+title:
+tags:
+  - 学习方法
+  - 编程思维
+categories:
+  - AI悦创·Vlog
+keywords:
+  - AI悦创
+  - Vlog
+  - Python一对一教学
+description: 本篇是 AI悦创编写的文章
+top_img: /img/posts/P04-Vlog/01-为什么学习编程推荐记笔记/IMG_3061.JPG
+comments: true
+cover: /img/posts/P04-Vlog/01-为什么学习编程推荐记笔记/01-为什么学习编程推荐记笔记.webp
+toc: true
+mathjax: false
+katex: false
+highlight_shrink: false
+aside: true
+swiper_index: 1
+top_group_index: 1
+background: '#fff'
+abbrlink: f00429a3
+date: {% endraw %}${currentTime}{% raw %}
+toc_number:
+toc_style_simple:
+copyright:
+copyright_author:
+copyright_author_href:
+copyright_url:
+copyright_info:
+aplayer:
+ai:
+---
+
+你好，我是悦创。
+
+
+
+
+{% span center log large blue, 🪧 %}
+
+{% folding blue close, 公众号：AI悦创【二维码】 %}
+
+![](https://bornforthis.cn/gzh.jpg)
+
+{% endfolding %}
+
+{% tip info %}AI悦创·编程一对一
+
+> AI悦创·推出辅导班啦，包括「Python 语言辅导班、C++ 辅导班、java 辅导班、算法/数据结构辅导班、少儿编程、pygame 游戏开发、Web、Linux」，全部都是一对一教学：一对一辅导 + 一对一答疑 + 布置作业 + 项目实践等。当然，还有线下线上摄影课程、Photoshop、Premiere 一对一教学、QQ、微信在线，随时响应！微信：Jiabcdefh
+>
+> C++ 信息奥赛题解，长期更新！长期招收一对一中小学信息奥赛集训，莆田、厦门地区有机会线下上门，其他地区线上。微信：Jiabcdefh
+>
+> 方法一：[QQ](http://wpa.qq.com/msgrd?v=3&uin=1432803776&site=qq&menu=yes)
+>
+> 方法二：微信：Jiabcdefh
+
+{% endtip %}
+{% endraw %}`;
+
+      // 显示在页面上，方便查看
+      document.getElementById('vlog-text').innerText = textToCopy;
+
+      // 自动复制到剪贴板
+      navigator.clipboard.writeText(textToCopy)
+        .then(() => {
+          document.getElementById('copy-status').innerText = "Vlog 内容已复制到剪贴板!";
+        })
+        .catch(err => {
+          console.error("复制失败", err);
+        });
+    };
+  </script>
+</head>
+<body>
+  <h2>Vlog 内容</h2>
+  <pre id="vlog-text"></pre>
+  <p id="copy-status" style="color: green;"></p>
+</body>
+</html>

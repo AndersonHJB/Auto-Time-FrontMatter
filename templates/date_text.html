@@ -9,7 +9,8 @@
       // 从后端传入的 current_time 变量，会在 HTML 里渲染
       const currentTime = "{{ current_time }}";
       // 这里的纯文本示例可以是任意字符串:
-      const textToCopy = `title:
+      const textToCopy = `---
+title:
 icon: blog
 date: ${currentTime}
 author:
@@ -27,7 +28,7 @@ lastUpdated: true
 editLink: false
 backToTop: true
 toc: true
-`;
+---`;
       // 显示在页面
       document.getElementById('text-container').innerText = textToCopy;
 
